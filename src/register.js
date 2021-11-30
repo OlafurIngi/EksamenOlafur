@@ -4,7 +4,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
      // Here I define the form that is related in the html file
     const form = document.getElementById("form")
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", (event) => {
 
         // Prevent any default action
         event.preventDefault();
@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         email: email,
         password: password
     }
+    
+    
 
         // Inspired from this https://www.codegrepper.com/code-examples/javascript/fetch+put+request+javascript
         // We make a fetch request
-        fetch("http://localhost:3000/users/create", {
+        fetch("http://localhost:3000/create", {
 
             method: "POST",
             headers: {
@@ -33,15 +35,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
             body: JSON.stringify(user)
 
         // If data is found go to login.html, if not, prompt error.
-        }) .then(res => res.json())
-        .then(data => {
-            if (data) {
-                location.href = "/login.html";
-            }
-        })
-        .catch((err) => {
-            
-            console.log("Error:", err)
+        }) 
+        .then((res) => res.json())
+        .then((res) => {
+        if (res) {
+
+          location.href = "/login.html";
+
+        }
+      })
+      // Catch the error 
+      .catch(() => {
+       
+        window.alert("Error, try again");
 
         })
 
