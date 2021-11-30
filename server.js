@@ -1,6 +1,10 @@
 // Set up our express.js server
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors()) 
+
 const router = express.Router();
 const port = 3000
  
